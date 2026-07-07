@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pymongo import MongoClient
 from app.api.v1 import customers, menus, companies, banks, bills
 from app.db.sql_connector import create_db_pool,close_db_pool
 from fastapi.staticfiles import StaticFiles
