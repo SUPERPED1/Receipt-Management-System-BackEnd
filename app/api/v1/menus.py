@@ -18,12 +18,12 @@ async def get_menus(month:Optional[int]):
         menus = await repo.get_all_menus()
         for menu in menus:
             if menu["addon_type"] == 1:
-                menu["menu_text"] = f"{menu["menu_text"]} เดือน {thai_months[month]}"
+                menu["menu_text"] = f"{menu['menu_text']} เดือน {thai_months[month]}"
 
         default_menu = await repo.get_default_menu()
         for menu in default_menu:
             if menu["addon_type"] == 1:
-                menu["menu_text"] = f"{menu["menu_text"]} เดือน {thai_months[month]}"
+                menu["menu_text"] = f"{menu['menu_text']} เดือน {thai_months[month]}"
 
         return MenusRespone(
             message="Query_success",
