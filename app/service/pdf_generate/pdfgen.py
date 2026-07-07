@@ -8,11 +8,11 @@ import json
 import asyncio
 
 async def data_preprocess(payload):
-    date = f"{payload["created_on"].day:02d}/{payload["created_on"].month:02d}/{payload["created_on"].year + 543}"
+    date = f"{payload['created_on'].day:02d}/{payload['created_on'].month:02d}/{payload['created_on'].year + 543}"
     total = payload["total_price"]
     payload["details"] = json.loads(payload["details"])
     for item in payload["details"]:
-        item["price"] = f"{item["price"]:,.2f}"
+        item["price"] = f"{item['price']:,.2f}"
 
     empty = 7 - len(payload["details"])
 
@@ -40,11 +40,11 @@ async def data_preprocess(payload):
 
 async def generate_html(payload):
     if payload["for_company"] == "1":
-        path = Path(r"D:\Every_file\receipt\Receipt_print_project\backend\app\service\pdf_generate\template\skall.html")
-        template_path = r"D:/Every_file/receipt/Receipt_print_project/backend/app/service/pdf_generate/template/logo.png"
+        path = Path(r".\template\skall.html")
+        template_path = r"./template/logo.png"
     else:
-        path = Path(r"D:\Every_file\receipt\Receipt_print_project\backend\app\service\pdf_generate\template\acpro.html")
-        template_path = r"D:/Every_file/receipt/Receipt_print_project/backend/app/service/pdf_generate/template/S.png"
+        path = Path(r".\template\acpro.html")
+        template_path = r"./template/S.png"
 
     # Read HTML and image concurrently
     html, logo_bytes = await asyncio.gather(
