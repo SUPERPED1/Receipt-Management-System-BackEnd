@@ -29,4 +29,4 @@ async def startup():
 async def shutdown():
     await close_db_pool()
     
-app.mount("/", StaticFiles(directory=r"D:\Every_file\receipt\Receipt_print_project\frontend\dist", html=True), name="frontend")
+app.mount("/", StaticFiles(directory=r"templates", html=True), name="frontend")
