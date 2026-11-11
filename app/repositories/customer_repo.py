@@ -1,4 +1,4 @@
-import app.db.sql_connector as db
+import app.core.db_connect as db
 
 async def get_all_customers():
     async with db.db_pool.acquire() as conn:

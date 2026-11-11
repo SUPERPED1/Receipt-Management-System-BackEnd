@@ -1,4 +1,4 @@
-import app.db.sql_connector as db
+import app.core.db_connect as db
 from app.schemas import CreateBill
 import uuid
 

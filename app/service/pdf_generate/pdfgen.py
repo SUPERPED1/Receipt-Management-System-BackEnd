@@ -1,9 +1,10 @@
 from pathlib import Path
 from jinja2 import Template
+from pathlib import Path
 from playwright.async_api import async_playwright
 from pythainlp.util import bahttext
 import base64
-import app.db.sql_connector as db
+import app.core.db_connect as db
 import json
 import asyncio
 
@@ -39,12 +40,16 @@ async def data_preprocess(payload):
 
 
 async def generate_html(payload):
+
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent
+    TEMPLATE_DIR = BASE_DIR / "service/pdf_generate/template"
+
     if payload["for_company"] == "1":
-        path = Path(r".\template\skall.html")
-        template_path = r"./template/logo.png"
+        path = TEMPLATE_DIR / "skall.html"
+        template_path = TEMPLATE_DIR / "logo.png"
     else:
-        path = Path(r".\template\acpro.html")
-        template_path = r"./template/S.png"
+        path = TEMPLATE_DIR / "acpro.html"
+        template_path = TEMPLATE_DIR / "S.png"
 
     # Read HTML and image concurrently
     html, logo_bytes = await asyncio.gather(
